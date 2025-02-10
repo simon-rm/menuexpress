@@ -1,0 +1,11 @@
+<%= simple_form_for(@menu) do |f| %>
+    <%= f.input :name %>
+    <h3>Categories</h3>
+    <div id="categories">
+      <%= f.simple_fields_for :categories do |category_form| %>
+        <%= render 'category_fields', f: category_form %>
+      <% end %>
+        <%= link_to_add_association 'Add Category', f, :categories %>
+    </div>
+    <%= f.button :submit %>
+<% end %>

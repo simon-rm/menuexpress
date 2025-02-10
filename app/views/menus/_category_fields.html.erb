@@ -1,0 +1,12 @@
+<div class="nested-fields">
+  <%= f.input :name, label: "Category Name" %>
+  <%= link_to_remove_association "Remove Category", f %>
+  <h4>Items</h4>
+  <%= f.simple_fields_for :items do |item_form| %>
+    <%= render 'item_fields', f: item_form %>
+  <% end %>
+  <div>
+    <%= link_to_add_association 'Add Item', f, :items, partial: 'item_fields' %>
+    <hr>
+  </div>
+</div>
