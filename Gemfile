@@ -71,3 +71,5 @@ gem "pundit", "~> 2.4"
 gem "simple_form", "~> 5.3"
 
 gem "cocoon", "~> 1.2"
+
+gem "faker", "~> 3.5"
