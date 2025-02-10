@@ -5,7 +5,9 @@
       <%= f.simple_fields_for :categories do |category_form| %>
         <%= render 'category_fields', f: category_form %>
       <% end %>
+      <div>
         <%= link_to_add_association 'Add Category', f, :categories %>
+      </div>
     </div>
     <%= f.button :submit %>
 <% end %>

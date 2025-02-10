@@ -1,2 +1,18 @@
-<h1>Menus#show</h1>
-<p>Find me in app/views/menus/show.html.erb</p>
+<h1><%= @menu.name %></h1>
+<%= link_to "Edit", edit_menu_path(@menu) %>
+<% @menu.categories.each do |category| %>
+  <section>
+    <h3><%= category.name %></h3>
+    <div>
+      <% category.items.each do |item| %>
+        <div>
+          <span><%= item.name %></span>
+          <span><%= number_to_currency item.price %></span>
+        </div>
+        <div>
+          <%= item.description %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+<% end %>

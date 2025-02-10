@@ -1,2 +1,4 @@
-<h1>Menus#index</h1>
-<p>Find me in app/views/menus/index.html.erb</p>
+<%= link_to "Create a Menu", new_menu_path %>
+<% @menus.each do |menu|%>
+  <div><%= link_to menu.name, menu %></div>
+<% end %>
