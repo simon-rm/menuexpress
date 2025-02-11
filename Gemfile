@@ -73,3 +73,5 @@ gem "simple_form", "~> 5.3"
 gem "cocoon", "~> 1.2"
 
 gem "faker", "~> 3.5"
+
+gem "dartsass-rails", "~> 0.5.1"
