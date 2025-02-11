@@ -1,4 +1,6 @@
-<%= link_to "Create a Menu", new_menu_path %>
-<% @menus.each do |menu|%>
-  <div><%= link_to menu.name, menu %></div>
-<% end %>
+<div class="pico">
+  <%= link_to "Create a Menu", new_menu_path %>
+  <% @menus.each do |menu|%>
+    <div><%= link_to menu.name, menu %></div>
+  <% end %>
+</div>

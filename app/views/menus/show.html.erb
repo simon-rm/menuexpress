@@ -1,18 +1,28 @@
-<h1><%= @menu.name %></h1>
-<%= link_to "Edit", edit_menu_path(@menu) %>
-<% @menu.categories.each do |category| %>
-  <section>
-    <h3><%= category.name %></h3>
-    <div>
-      <% category.items.each do |item| %>
-        <div>
-          <span><%= item.name %></span>
-          <span><%= number_to_currency item.price %></span>
-        </div>
-        <div>
-          <%= item.description %>
-        </div>
+<div class="menu-wrapper">
+  <div class="menu nopico">
+    <header class="menu__header">
+      <h1><%= @menu.name %></h1>
+      <%= link_to "Edit", edit_menu_path(@menu) %>
+    </header>
+    <div class="menu__body">
+      <% @menu.categories.each do |category| %>
+        <article class="menu__category">
+          <h3 class="menu__category-title"><%= category.name %></h3>
+          <div>
+            <% category.items.each do |item| %>
+              <div class="menu__item">
+                <div>
+                  <div class="menu__item-name"><%= item.name %></div>
+                  <div class="menu__item-description"><%= item.description %></div>
+                </div>
+                <div>
+                  <%= number_to_currency item.price %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </article>
       <% end %>
     </div>
-  </section>
-<% end %>
+  </div>
+</div>

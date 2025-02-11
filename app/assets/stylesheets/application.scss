@@ -1,5 +1,5 @@
 @use "@picocss/pico/scss/pico" with (
-  $parent-selector: "body:not(:has(.nopico))",
+  $parent-selector: ".pico",
   $theme-color: "violet"
 );
 @import "menu";

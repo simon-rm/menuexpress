@@ -1,0 +1,42 @@
+.menu-wrapper {
+    background-color: hsl(0%, 0%, 98%);
+}
+.menu {
+    background-color: white;
+    color: hsl(0%, 0%, 10%);
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+
+    &__header {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        padding-left: 10px;
+    }
+
+    &__category {
+        &-title {
+            text-align: center;
+            color: hsl(0%, 0%, 20%);
+            background-color: hsl(0%, 5%, 90%);
+            margin: 0;
+            padding: 10px;
+        }
+        background-color: hsl(0%,0%,98%);
+    }
+
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+
+        &:nth-child(even) {
+            background-color: hsl(0%, 0%,95%)
+        }
+
+        &-description {
+            font-size: 0.75rem;
+        }
+    }
+}
