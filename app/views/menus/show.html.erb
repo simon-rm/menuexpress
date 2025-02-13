@@ -1,28 +1,35 @@
 <div class="menu-wrapper">
-  <div class="menu nopico">
+  <div class="menu">
     <header class="menu__header">
       <h1><%= @menu.name %></h1>
       <%= link_to "Edit", edit_menu_path(@menu) %>
     </header>
-    <div class="menu__body">
-      <% @menu.categories.each do |category| %>
-        <article class="menu__category">
-          <h3 class="menu__category-title"><%= category.name %></h3>
-          <div>
-            <% category.items.each do |item| %>
-              <div class="menu__item">
-                <div>
-                  <div class="menu__item-name"><%= item.name %></div>
-                  <div class="menu__item-description"><%= item.description %></div>
+    <%= simple_form_for @order, url: menu_orders_path(@menu) do |f| %>
+      <div class="menu__body">
+        <% @menu.categories.each do |category| %>
+          <article class="menu__category">
+            <h3 class="menu__category-title"><%= category.name %></h3>
+            <div>
+              <% category.items.each do |item| %>
+                <div class="menu__item">
+                  <div>
+                    <div class="menu__item-name"><%= item.name %></div>
+                    <div class="menu__item-description"><%= item.description %></div>
+                  </div>
+                  <div>
+                    <%= number_to_currency item.price %>
+                    <%= f.simple_fields_for :item_orders, @order.item_orders.detect { |io| io.item_id == item.id } do |iof| %>
+                      <%= iof.hidden_field :item_id %>
+                      <%= iof.input_field :quantity %>
+                    <% end %>
+                  </div>
                 </div>
-                <div>
-                  <%= number_to_currency item.price %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </article>
-      <% end %>
-    </div>
+              <% end %>
+            </div>
+          </article>
+        <% end %>
+      </div>
+      <%= f.submit "Continue" %>
+    <% end %>
   </div>
 </div>

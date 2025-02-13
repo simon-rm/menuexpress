@@ -8,6 +8,7 @@ class MenusController < ApplicationController
 
   # GET /menus/:id
   def show
+    @order = Order.new(items: @menu.items)
   end
 
   # GET /menus/new
