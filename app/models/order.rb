@@ -1,9 +1,13 @@
 class Order < ApplicationRecord
   belongs_to :user
-  belongs_to :menu
-  has_many :item_orders
-  has_many :items, through: :item_orders
+  has_many :order_items, dependent: :destroy
+  has_many :items, through: :order_items
 
-  accepts_nested_attributes_for :item_orders, allow_destroy: true,
-                                reject_if: proc { |attr| attr[:quantity].to_i <= 0 }
+  def menu
+    items.first.menu
+  end
+
+  enum :status, %i[
+    pending confirmed preparing ready in_transit delivered canceled failed
+  ]
 end
