@@ -18,7 +18,7 @@
                   </div>
                   <div class="menu__item-adder-interface">
                     <%= number_to_currency item.price %>
-                    <%= render "shared/item_adder", order_item: @order_items.detect { it.item_id == item.id } %>
+                    <%= render "shared/item_adder", item:, order_item: @order&.order_items&.detect { it.item_id == item.id } %>
                   </div>
                 </div>
               <% end %>
