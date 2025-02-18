@@ -3,3 +3,32 @@
   $theme-color: "violet"
 );
 @import "menu";
+
+:root {
+  --order-footer-height: 90px;
+}
+
+form[aria-busy=true]::before {
+  all: unset !important;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.btn-primary {
+  font-size: 1.5rem;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: var(--pico-primary);
+  border: none;
+  color: white;
+}

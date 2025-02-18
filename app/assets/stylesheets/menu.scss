@@ -1,7 +1,14 @@
-.menu-wrapper {
+.order-wrapper, .menu-wrapper {
     background-color: hsl(0%, 0%, 98%);
+    height: 100%;
+    align-content: center;
+    min-height: 100vh;
+
+    &:has(.order__footer) {
+        padding-bottom: var(--order-footer-height);
+    }
 }
-.menu {
+.menu, .order {
     background-color: white;
     color: hsl(0%, 0%, 10%);
     max-width: 600px;
@@ -37,6 +44,48 @@
 
         &-description {
             font-size: 0.75rem;
+        }
+    }
+
+    &__item-adder-interface {
+        text-align: right;
+    }
+    &__item-adder {
+        display: inline-flex;
+        align-items: center !important;
+        background-color: hsl(0, 0, 90);
+
+        form, button, .menu__item-quantity {
+            height: 22px;
+        }
+
+        button {
+            display: flex;  // Align icon inside button
+        }
+
+        .menu__item-quantity {
+            line-height: 1.3;
+            padding: 0 10px;
+            margin: 0;
+        }
+    }
+
+    &__footer-wrapper {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        max-width: 600px;
+    }
+    &__footer {
+        height: var(--order-footer-height);
+        background-color: white;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 20px;
+
+        .btn-checkout {
+            font-size: 1rem;
         }
     }
 }
