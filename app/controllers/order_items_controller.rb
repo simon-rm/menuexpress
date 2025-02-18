@@ -9,11 +9,8 @@ class OrderItemsController < ApplicationController
 
   def create
     item = Item.find(order_item_params[:item_id])
-    pending_order = current_user.pending_order
-    if pending_order.nil? || pending_order.menu == item.menu
-      order = pending_order || Order.create!(user: current_user)
-      OrderItem.create!(**order_item_params, order:, price: item.price)
-    end
+    order = current_user.orders.pending.find_or_create_by(menu: item.menu)
+    OrderItem.create!(**order_item_params, order:, price: item.price)
     redirect_back_or_to :root
   end
 

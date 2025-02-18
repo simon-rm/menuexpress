@@ -4,6 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
   has_many :menus
-
-  has_one :pending_order, -> { pending }, class_name: "Order"
+  has_many :orders
 end
