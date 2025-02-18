@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   get "orders/edit"
   devise_for :users
-  resources :menus do
-    resources :orders, only: %i[create edit update], shallow: true
-  end
+  resources :menus
+  resources :order_items, only: [:index, :create, :update, :destroy]
   root "menus#index"
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
