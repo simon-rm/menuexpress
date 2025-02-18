@@ -8,7 +8,17 @@ class MenusController < ApplicationController
 
   # GET /menus/:id
   def show
-    @order = Order.new(items: @menu.items)
+    if current_user.pending_order.nil?
+      @order_items = @menu.items.map { OrderItem.new(item_id: it.id) }
+    elsif current_user.pending_order.menu == @menu
+      selected_order_items = current_user.pending_order.order_items
+      unselected_items = @menu.items.reject do
+        it.id.in? selected_order_items.pluck(:item_id)
+      end
+      unselected_order_items = unselected_items.map { OrderItem.new(item_id: it.id) }
+      @order_items = selected_order_items + unselected_order_items
+      @total_price = selected_order_items.sum("price * quantity")
+    end
   end
 
   # GET /menus/new

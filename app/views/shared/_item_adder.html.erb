@@ -1,0 +1,23 @@
+<div class="menu__item-adder-wrapper">
+  <div class="menu__item-adder">
+    <% if order_item.persisted? %>
+      <% if order_item.quantity == 1 %>
+        <%= button_to order_item, method: :delete do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+      <% else %>
+        <%= button_to order_item, params: { order_item: {  item_id: order_item.item_id, quantity: order_item.quantity - 1 } },
+                      onclick: "setTimeout(() => this.removeAttribute('disabled'), 0);" do %>
+          <i class="fa fa-minus"></i>
+        <% end %>
+      <% end %>
+      <div class="menu__item-quantity">
+        <%= order_item.quantity %>
+      </div>
+    <% end %>
+    <%= button_to order_item, params: { order_item: {  item_id: order_item.item_id, quantity: (order_item.quantity || 0) + 1 } },
+                  onclick: "setTimeout(() => this.removeAttribute('disabled'), 0);" do %>
+      <i class="fa fa-plus"></i>
+    <% end %>
+  </div>
+</div>

@@ -1,10 +1,10 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 <div class="menu-wrapper">
   <div class="menu">
     <header class="menu__header">
       <h1><%= @menu.name %></h1>
       <%= link_to "Edit", edit_menu_path(@menu) %>
     </header>
-    <%= simple_form_for @order, url: menu_orders_path(@menu) do |f| %>
       <div class="menu__body">
         <% @menu.categories.each do |category| %>
           <article class="menu__category">
@@ -16,12 +16,9 @@
                     <div class="menu__item-name"><%= item.name %></div>
                     <div class="menu__item-description"><%= item.description %></div>
                   </div>
-                  <div>
+                  <div class="menu__item-adder-interface">
                     <%= number_to_currency item.price %>
-                    <%= f.simple_fields_for :item_orders, @order.item_orders.detect { |io| io.item_id == item.id } do |iof| %>
-                      <%= iof.hidden_field :item_id %>
-                      <%= iof.input_field :quantity %>
-                    <% end %>
+                    <%= render "shared/item_adder", order_item: @order_items.detect { it.item_id == item.id } %>
                   </div>
                 </div>
               <% end %>
@@ -29,7 +26,17 @@
           </article>
         <% end %>
       </div>
-      <%= f.submit "Continue" %>
-    <% end %>
   </div>
+  <% if @total_price.present? %>
+    <div class="order__footer-wrapper">
+      <div class="order__footer">
+        <span>Total: <%= number_to_currency @total_price %> </span>
+        <%= link_to order_items_path do %>
+          <button class="btn-primary">
+            Continue
+          </button>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>

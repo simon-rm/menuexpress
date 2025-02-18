@@ -1,0 +1,32 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+<div class="menu-wrapper">
+  <div class="order">
+    <% @order_items.each do |order_item| %>
+      <% item = order_item.item %>
+      <div class="order__item">
+        <div>
+          <%= item.name %>
+          <div class="order__item-description">
+            <%= item.description %>
+          </div>
+        </div>
+        <div class="order__item-adder-interface">
+          <div>
+            <%= number_to_currency order_item.price %>
+          </div>
+          <%= render "shared/item_adder", order_item: %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="order__footer-wrapper">
+    <div class="order__footer">
+      <span>Total: <%= number_to_currency @total_price %> </span>
+      <%= link_to "#" do %>
+        <button class="btn-primary btn-checkout">
+          Proceed to checkout
+        </button>
+      <% end %>
+    </div>
+  </div>
+</div>
