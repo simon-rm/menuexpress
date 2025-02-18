@@ -8,12 +8,12 @@ class MenusController < ApplicationController
 
   # GET /menus/:id
   def show
-    order = current_user.orders.pending.find_by(menu: @menu)
-    if order.present?
-      unselected_items = @menu.items.reject { it.in? order.items }
+    @order = current_user.orders.pending.find_by(menu: @menu)
+    if @order.present?
+      unselected_items = @menu.items.reject { it.in? @order.items }
       unselected_order_items = unselected_items.map { OrderItem.new(item_id: it.id) }
-      @order_items = order.order_items + unselected_order_items
-      @total_price = order.order_items.sum("price * quantity")
+      @order_items = @order.order_items + unselected_order_items
+      @total_price = @order.order_items.sum("price * quantity")
     else
       @order_items = @menu.items.map { OrderItem.new(item_id: it.id) }
     end
