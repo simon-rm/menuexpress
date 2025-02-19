@@ -424,7 +424,9 @@ PLATFORMS
   aarch64-linux-gnu
   aarch64-linux-musl
   arm-linux-gnu
+  arm-linux-gnueabihf
   arm-linux-musl
+  arm-linux-musleabihf
   x86_64-linux
   x86_64-linux-gnu
   x86_64-linux-musl
@@ -459,6 +461,9 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+
+RUBY VERSION
+   ruby 3.4.2p28
 
 BUNDLED WITH
    2.6.2
