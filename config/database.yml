@@ -4,6 +4,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # These can be set via environment variables or hard-coded if you prefer:
 
 development:
   <<: *default
@@ -14,5 +15,17 @@ test:
   database: medb_test
 
 production:
-  <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  primary:
+    <<: *default
+    url: <%= ENV["DATABASE_URL"] %>
+  cable:
+    <<: *default
+    migrations_paths: db/cable_migrate
+  queue:
+    <<: *default
+    migrations_paths: db/queue_migrate
+  cache:
+    <<: *default
+    migrations_paths: db/cache_migrate
+
+
