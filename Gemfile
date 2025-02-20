@@ -79,3 +79,5 @@ gem "faker", "~> 3.5"
 gem "dartsass-rails", "~> 0.5.1"
 
 gem "pg", "~> 1.5"
+
+gem "mercadopago-sdk", "~> 2.3"
