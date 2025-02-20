@@ -1,0 +1,21 @@
+<div class="pico" data-controller="mercadopago"
+     data-mercadopago-price-value="<%= @order.total_price %>"
+     data-mercadopago-pk-value="<%= Rails.application.credentials.mercadopago.pk %>">
+<%= simple_form_for [@order, @transaction], html: { id: "form-checkout" } do |f| %>
+  <div class="secure-inputs">
+    <div class="secure-input" id="form-checkout__cardNumber"></div>
+    <div class="secure-input" id="form-checkout__expirationDate"></div>
+    <div class="secure-input" id="form-checkout__securityCode"></div>
+  </div>
+  <%= simple_fields_for :prepayment_data do |pp| %>
+    <%= pp.input :cardholder_name, label: "Nombre del titular", input_html: { id: "form-checkout__cardholderName" } %>
+    <%= pp.input :issuer, label: "Emisor", as: :select, input_html: { id: "form-checkout__issuer" } %>
+    <%= pp.input :installments, label: "Cuotas", as: :select, input_html: { id: "form-checkout__installments" } %>
+    <%= pp.input :identification_type, label: "Tipo de documento", as: :select, input_html: { id: "form-checkout__identificationType" } %>
+    <%= pp.input :identification_number, label: "Número de documento", input_html: { id: "form-checkout__identificationNumber" } %>
+    <%= pp.input :cardholder_email, label: "Email", as: :email, input_html: { id: "form-checkout__cardholderEmail" } %>
+  <% end %>
+  <%= f.submit "Pagar", id: "form-checkout__submit" %>
+  <progress value="0" class="progress-bar">Cargando...</progress>
+<% end %>
+</div>
