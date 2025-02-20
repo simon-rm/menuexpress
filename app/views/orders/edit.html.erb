@@ -22,7 +22,7 @@
   <div class="order__footer-wrapper">
     <div class="order__footer">
       <span>Total: <%= number_to_currency @total_price %> </span>
-      <%= link_to "#" do %>
+      <%= link_to new_order_transaction_path(@order) do %>
         <button class="btn-primary btn-checkout">
           Proceed to checkout
         </button>
