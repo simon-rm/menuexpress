@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :order_items, only: %i[create update destroy]
   root "menus#index"
 
+  namespace :webhooks do
+    post 'mercadopago', to: 'mercadopago#receive'
+  end
+
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
